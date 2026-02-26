@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>拓展知识</title>
+    <!-- 新增：浏览器标签页ICO图标（和index页面保持一致） -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -158,6 +161,26 @@
             color: #fff;
             background: #6c757d;
         }
+        /* 新增：返回主页面按钮样式 */
+        .back-to-index {
+            width: 100%;
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        .back-btn {
+            padding: 12px 30px;
+            background: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            display: inline-block;
+        }
+        .back-btn:hover {
+            background: #3367d6;
+        }
         /* 手机端适配 */
         @media (max-width: 400px) {
             h1 {
@@ -180,6 +203,12 @@
             }
             .score-box p {
                 font-size: 16px;
+            }
+            /* 手机端返回按钮适配 */
+            .back-btn {
+                padding: 10px 25px;
+                font-size: 15px;
+                width: 100%;
             }
         }
     </style>
@@ -238,6 +267,11 @@
         <p>总得分：<span class="score-num" id="totalScore">0</span> / 3 分</p>
         <p>知识掌握程度：<span class="level-text" id="level">——</span></p>
         <div class="level-desc" id="levelDesc">请完成习题，系统将自动统计你的掌握程度~</div>
+    </div>
+
+    <!-- 新增：页面末尾的返回主页面按钮 -->
+    <div class="back-to-index">
+        <a href="index.html" class="back-btn">返回主页面</a>
     </div>
 
     <script>
