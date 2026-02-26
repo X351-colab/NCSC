@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拓展知识</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            line-height: 1.7;
+            background: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+        .knowledge {
+            margin: 40px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #4285f4;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .knowledge h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+        .knowledge p {
+            margin: 12px 0;
+            color: #495057;
+            font-size: 15px;
+        }
+        .knowledge p strong {
+            color: #212529;
+        }
+        .exercise-title {
+            font-size: 18px;
+            margin: 40px 0 20px;
+            color: #333;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: white;
+        }
+        .question p {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+        .option {
+            margin: 12px 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 15px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .option.selected {
+            background: #e8f0fe;
+            border-color: #4285f4;
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            background: #f5f5f5;
+            border-color: #eee;
+            color: #999;
+        }
+        .submit-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: #3367d6;
+        }
+        .submit-btn.disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .feedback {
+            margin-top: 12px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: block;
+            font-size: 15px;
+        }
+        .correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        .wrong {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        /* 评分模块样式 */
+        .score-box {
+            width: 100%;
+            margin: 50px 0 20px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .score-box h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .score-box p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #495057;
+        }
+        .score-box span {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .score-num {
+            color: #4285f4;
+        }
+        .level-text {
+            color: #f57c00;
+        }
+        .level-desc {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #fff;
+            background: #6c757d;
+        }
+        /* 手机端适配 */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 20px;
+            }
+            .knowledge {
+                padding: 20px;
+            }
+            .question {
+                padding: 15px;
+            }
+            .option, .submit-btn {
+                padding: 8px 12px;
+            }
+            .score-box {
+                padding: 20px 15px;
+            }
+            .score-box h2 {
+                font-size: 20px;
+            }
+            .score-box p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>拓展知识：Session与Cookie的关联与区别</h1>
+
+    <!-- 核心拓展知识 -->
+    <div class="knowledge">
+        <h2>核心知识点：Session与Cookie的关联与区别</h2>
+        <p>Cookie和Session是网站协同实现<strong>用户状态记录</strong>的核心技术，也是计算机基础的高频考点，二者互补使用，解决了HTTP请求“无状态”的问题，核心差异在于<strong>存储位置</strong>。</p>
+        <p><strong>1. 存储位置不同</strong>：Cookie存储在<strong>用户浏览器本地</strong>，是小型文本文件，用户可手动查看、清除；Session存储在<strong>网站服务器端</strong>（内存/数据库），用户无法直接访问。</p>
+        <p><strong>2. 二者关联方式</strong>：服务器创建Session后，会生成唯一的<strong>SessionID</strong>，并通过Cookie将该ID发送给浏览器；浏览器后续访问时，会自动携带SessionID，服务器通过该ID匹配对应的Session，从而识别用户。</p>
+        <p><strong>3. 安全性差异</strong>：Session核心数据在服务器端，不易被篡改、泄露，安全性<strong>高于</strong>Cookie；Cookie存储在本地，若被恶意获取，可能导致用户身份信息泄露。</p>
+        <p><strong>4. 有效期不同</strong>：Cookie可由网站设置长期有效（如“记住登录30天”）；Session默认有效期较短，若用户长时间不操作网站，服务器会自动销毁该Session。</p>
+        <p><strong>核心总结</strong>：Session依赖Cookie传递SessionID实现用户识别，Cookie是“前端身份凭证”，Session是“后端用户状态”，二者配合实现安全、稳定的用户状态管理。</p>
+    </div>
+
+    <!-- 拓展习题 -->
+    <div class="exercise-title">拓展配套习题（共3题，每题1分）</div>
+
+    <!-- 第1题 -->
+    <div class="question">
+        <p>1. 下列关于Session和Cookie的说法，正确的是？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">A. SessionID通常通过Cookie发送给浏览器</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">B. Session和Cookie都存储在用户浏览器本地</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">C. Cookie的安全性比Session更高</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">D. Session可以设置为永久有效</div>
+        <button class="submit-btn" onclick="submitAnswer(1,'A','A. SessionID通常通过Cookie发送给浏览器')" ontouchstart="submitAnswer(1,'A','A. SessionID通常通过Cookie发送给浏览器')">提交答案</button>
+        <div class="feedback" id="feedback-1"></div>
+    </div>
+
+    <!-- 第2题 -->
+    <div class="question">
+        <p>2. 若用户手动清除了浏览器的所有Cookie，再次访问网站时，服务器会出现什么情况？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">A. 服务器直接删除该用户的原有Session</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">B. 服务器无法匹配到原有Session，会为用户创建新的Session</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">C. 服务器会直接识别用户，无需重新创建Session</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">D. 网站无法正常打开，提示Cookie禁用错误</div>
+        <button class="submit-btn" onclick="submitAnswer(2,'B','B. 服务器无法匹配到原有Session，会为用户创建新的Session')" ontouchstart="submitAnswer(2,'B','B. 服务器无法匹配到原有Session，会为用户创建新的Session')">提交答案</button>
+        <div class="feedback" id="feedback-2"></div>
+    </div>
+
+    <!-- 第3题 -->
+    <div class="question">
+        <p>3. Session的实现依赖Cookie，若浏览器禁用了Cookie，Session将无法正常工作。（）</p>
+        <div class="option" data-ans="√" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">√</div>
+        <div class="option" data-ans="×" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">×</div>
+        <button class="submit-btn" onclick="submitAnswer(3,'√','√（正确）')" ontouchstart="submitAnswer(3,'√','√（正确）')">提交答案</button>
+        <div class="feedback" id="feedback-3"></div>
+    </div>
+
+    <!-- 评分结果统计模块 -->
+    <div class="score-box">
+        <h2>拓展知识答题结果</h2>
+        <p>总得分：<span class="score-num" id="totalScore">0</span> / 3 分</p>
+        <p>知识掌握程度：<span class="level-text" id="level">——</span></p>
+        <div class="level-desc" id="levelDesc">请完成习题，系统将自动统计你的掌握程度~</div>
+    </div>
+
+    <script>
+        // 全局变量：记录选中答案、题目是否已提交、总分
+        let selectedOptions = {};
+        let submittedQuestions = {}; // 标记题目是否已提交，提交后永久锁定
+        let totalScore = 0;
+        const totalQuestions = 3; // 拓展题共3题
+
+        // 初始化：所有题目默认未提交
+        for(let i=1; i<=totalQuestions; i++){
+            submittedQuestions[i] = false;
+        }
+
+        // 选中选项函数：仅未提交的题目可选中
+        function selectOption(option, qNum) {
+            // 题目已提交，直接返回，禁止选中
+            if(submittedQuestions[qNum]) return;
+            
+            const allOptions = option.parentNode.querySelectorAll('.option');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedOptions[qNum] = option.getAttribute('data-ans');
+            
+            // 清空当前题反馈
+            const feedback = document.getElementById('feedback-' + qNum);
+            feedback.innerText = '';
+            feedback.className = 'feedback';
+        }
+
+        // 提交答案函数：和课后习题同款核心规则
+        function submitAnswer(qNum, correctAns, correctAnsText) {
+            const feedback = document.getElementById('feedback-' + qNum);
+            const userAns = selectedOptions[qNum];
+            const allOptions = feedback.parentNode.querySelectorAll('.option');
+            const submitBtn = feedback.parentNode.querySelector('.submit-btn');
+
+            // 1. 未选择选项的提示
+            if (!userAns) {
+                feedback.innerText = '请先选择一个选项！';
+                feedback.className = 'feedback';
+                return;
+            }
+
+            // 2. 题目已提交，直接返回，禁止重复提交
+            if(submittedQuestions[qNum]) return;
+
+            // 3. 标记题目为已提交，永久锁定
+            submittedQuestions[qNum] = true;
+            // 锁定该题所有选项和提交按钮（样式+点击）
+            allOptions.forEach(opt => {
+                opt.classList.add('disabled');
+                opt.onclick = null;
+                opt.ontouchstart = null;
+            });
+            submitBtn.classList.add('disabled');
+            submitBtn.onclick = null;
+            submitBtn.ontouchstart = null;
+
+            // 4. 答对逻辑：首次计分+提示正确
+            if (userAns === correctAns) {
+                feedback.innerText = '恭喜你回答正确！+1分';
+                feedback.className = 'feedback correct';
+                totalScore++;
+                updateScoreResult(); // 实时更新评分
+            } else {
+                // 5. 答错逻辑：永久提示错误+正确答案，不加分
+                feedback.innerText = `回答错误！正确答案：${correctAnsText}`;
+                feedback.className = 'feedback wrong';
+            }
+        }
+
+        // 评分等级更新：3分制专属等级划分
+        function updateScoreResult() {
+            const scoreDom = document.getElementById('totalScore');
+            const levelDom = document.getElementById('level');
+            const descDom = document.getElementById('levelDesc');
+            scoreDom.innerText = totalScore;
+
+            // 等级划分（3分制，适配拓展题数量）
+            let level, desc, bgColor;
+            if (totalScore < 1) {
+                level = '不合格';
+                desc = '对Session与Cookie的拓展知识掌握不足，建议重新学习知识点后再作答！';
+                bgColor = '#dc3545';
+            } else if (totalScore === 1) {
+                level = '合格';
+                desc = '基本掌握Session与Cookie的基础关联，仍需加强细节理解！';
+                bgColor = '#ffc107';
+            } else if (totalScore === 2) {
+                level = '良好';
+                desc = '较好掌握拓展知识，仅1个细节需巩固，继续加油！';
+                bgColor = '#198754';
+            } else {
+                level = '优秀';
+                desc = '完美掌握Session与Cookie的所有拓展知识点，知识掌握很扎实！';
+                bgColor = '#0d6efd';
+            }
+
+            levelDom.innerText = level;
+            descDom.innerText = desc;
+            descDom.style.background = bgColor;
+        }
+    </script>
+</body>
+</html>

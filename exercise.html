@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课后习题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .question p {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+        .option {
+            margin: 10px 0;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 15px;
+        }
+        .option.selected {
+            background: #e8f0fe;
+            border-color: #4285f4;
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            background: #f5f5f5;
+            border-color: #eee;
+            color: #999;
+        }
+        .submit-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .submit-btn:hover {
+            background: #3367d6;
+        }
+        .submit-btn.disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: block;
+            font-size: 15px;
+        }
+        .correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        .wrong {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        /* 评分模块样式 */
+        .score-box {
+            width: 100%;
+            margin: 50px 0 20px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .score-box h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .score-box p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #495057;
+        }
+        .score-box span {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .score-num {
+            color: #4285f4;
+        }
+        .level-text {
+            color: #f57c00;
+        }
+        .level-desc {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #fff;
+            background: #6c757d;
+        }
+        /* 手机端适配 */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 20px;
+            }
+            .question {
+                padding: 15px;
+            }
+            .option, .submit-btn {
+                padding: 8px 12px;
+            }
+            .score-box {
+                padding: 20px 15px;
+            }
+            .score-box h2 {
+                font-size: 20px;
+            }
+            .score-box p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>课后习题</h1>
+
+    <!-- 第1题 -->
+    <div class="question">
+        <p>1. Cookie的本质是什么？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">A. 浏览器自带的病毒查杀工具</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">B. 服务器存储在浏览器的小型文本文件</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">C. 电脑本地的视频缓存文件</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,1)" ontouchstart="selectOption(this,1)">D. 网站的后台数据库</div>
+        <button class="submit-btn" onclick="submitAnswer(1,'B','B. 服务器存储在浏览器的小型文本文件')" ontouchstart="submitAnswer(1,'B','B. 服务器存储在浏览器的小型文本文件')">提交答案</button>
+        <div class="feedback" id="feedback-1"></div>
+    </div>
+
+    <!-- 第2题 -->
+    <div class="question">
+        <p>2. 以下哪项不是Cookie的主要作用？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">A. 记住用户的登录状态</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">B. 保存购物车商品信息</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">C. 直接提升电脑的运行速度</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,2)" ontouchstart="selectOption(this,2)">D. 记录用户的浏览偏好</div>
+        <button class="submit-btn" onclick="submitAnswer(2,'C','C. 直接提升电脑的运行速度')" ontouchstart="submitAnswer(2,'C','C. 直接提升电脑的运行速度')">提交答案</button>
+        <div class="feedback" id="feedback-2"></div>
+    </div>
+
+    <!-- 第3题 -->
+    <div class="question">
+        <p>3. 服务器能通过Cookie识别用户，核心原因是？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">A. Cookie里存储了用户的身份标识</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">B. Cookie可以远程控制服务器</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">C. 浏览器会把Cookie发送给所有网站</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,3)" ontouchstart="selectOption(this,3)">D. Cookie能破解用户的账号密码</div>
+        <button class="submit-btn" onclick="submitAnswer(3,'A','A. Cookie里存储了用户的身份标识')" ontouchstart="submitAnswer(3,'A','A. Cookie里存储了用户的身份标识')">提交答案</button>
+        <div class="feedback" id="feedback-3"></div>
+    </div>
+
+    <!-- 第4题 -->
+    <div class="question">
+        <p>4. 导致“刚搜完球鞋，其他网站就出现球鞋广告”的主要原因是？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,4)" ontouchstart="selectOption(this,4)">A. 手机开启了麦克风偷听</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,4)" ontouchstart="selectOption(this,4)">B. 第三方Cookie记录了浏览行为</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,4)" ontouchstart="selectOption(this,4)">C. 网站获取了手机的定位信息</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,4)" ontouchstart="selectOption(this,4)">D. 浏览器的缓存功能异常</div>
+        <button class="submit-btn" onclick="submitAnswer(4,'B','B. 第三方Cookie记录了浏览行为')" ontouchstart="submitAnswer(4,'B','B. 第三方Cookie记录了浏览行为')">提交答案</button>
+        <div class="feedback" id="feedback-4"></div>
+    </div>
+
+    <!-- 第5题 -->
+    <div class="question">
+        <p>5. 完全禁用Cookie后，最可能出现的情况是？（）</p>
+        <div class="option" data-ans="A" onclick="selectOption(this,5)" ontouchstart="selectOption(this,5)">A. 无法打开任何网页</div>
+        <div class="option" data-ans="B" onclick="selectOption(this,5)" ontouchstart="selectOption(this,5)">B. 每个网站都需要反复输入账号密码</div>
+        <div class="option" data-ans="C" onclick="selectOption(this,5)" ontouchstart="selectOption(this,5)">C. 电脑会频繁弹出病毒提示</div>
+        <div class="option" data-ans="D" onclick="selectOption(this,5)" ontouchstart="selectOption(this,5)">D. 网页的图片都无法加载</div>
+        <button class="submit-btn" onclick="submitAnswer(5,'B','B. 每个网站都需要反复输入账号密码')" ontouchstart="submitAnswer(5,'B','B. 每个网站都需要反复输入账号密码')">提交答案</button>
+        <div class="feedback" id="feedback-5"></div>
+    </div>
+
+    <!-- 第6题 判断 -->
+    <div class="question">
+        <p>6. Cookie是一种有害的电脑病毒，需要立即删除所有Cookie。（）</p>
+        <div class="option" data-ans="√" onclick="selectOption(this,6)" ontouchstart="selectOption(this,6)">√</div>
+        <div class="option" data-ans="×" onclick="selectOption(this,6)" ontouchstart="selectOption(this,6)">×</div>
+        <button class="submit-btn" onclick="submitAnswer(6,'×','×（错误）')" ontouchstart="submitAnswer(6,'×','×（错误）')">提交答案</button>
+        <div class="feedback" id="feedback-6"></div>
+    </div>
+
+    <!-- 第7题 判断 -->
+    <div class="question">
+        <p>7. 在公共电脑上登录网站时，勾选“记住我”会存在信息泄露风险。（）</p>
+        <div class="option" data-ans="√" onclick="selectOption(this,7)" ontouchstart="selectOption(this,7)">√</div>
+        <div class="option" data-ans="×" onclick="selectOption(this,7)" ontouchstart="selectOption(this,7)">×</div>
+        <button class="submit-btn" onclick="submitAnswer(7,'√','√（正确）')" ontouchstart="submitAnswer(7,'√','√（正确）')">提交答案</button>
+        <div class="feedback" id="feedback-7"></div>
+    </div>
+
+    <!-- 第8题 判断 -->
+    <div class="question">
+        <p>8. 清除浏览器Cookie后，网站会将用户视为第一次来访的陌生人。（）</p>
+        <div class="option" data-ans="√" onclick="selectOption(this,8)" ontouchstart="selectOption(this,8)">√</div>
+        <div class="option" data-ans="×" onclick="selectOption(this,8)" ontouchstart="selectOption(this,8)">×</div>
+        <button class="submit-btn" onclick="submitAnswer(8,'√','√（正确）')" ontouchstart="submitAnswer(8,'√','√（正确）')">提交答案</button>
+        <div class="feedback" id="feedback-8"></div>
+    </div>
+
+    <!-- 评分结果统计模块 -->
+    <div class="score-box">
+        <h2>答题结果统计</h2>
+        <p>总得分：<span class="score-num" id="totalScore">0</span> / 8 分</p>
+        <p>知识掌握程度：<span class="level-text" id="level">——</span></p>
+        <div class="level-desc" id="levelDesc">请完成习题，系统将自动统计你的掌握程度~</div>
+    </div>
+
+    <script>
+        // 全局变量：记录选中答案、题目是否已提交（核心：锁题）、总分
+        let selectedOptions = {};
+        let submittedQuestions = {}; // 标记题目是否已提交，提交后永久锁定
+        let totalScore = 0;
+        const totalQuestions = 8;
+
+        // 初始化：所有题目默认未提交
+        for(let i=1; i<=totalQuestions; i++){
+            submittedQuestions[i] = false;
+        }
+
+        // 选中选项函数：仅未提交的题目可选中
+        function selectOption(option, qNum) {
+            // 题目已提交，直接返回，禁止选中
+            if(submittedQuestions[qNum]) return;
+            
+            const allOptions = option.parentNode.querySelectorAll('.option');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedOptions[qNum] = option.getAttribute('data-ans');
+            
+            // 清空当前题反馈
+            const feedback = document.getElementById('feedback-' + qNum);
+            feedback.innerText = '';
+            feedback.className = 'feedback';
+        }
+
+        // 提交答案函数：核心修复+严格锁题规则
+        function submitAnswer(qNum, correctAns, correctAnsText) {
+            const feedback = document.getElementById('feedback-' + qNum);
+            const userAns = selectedOptions[qNum];
+            const allOptions = feedback.parentNode.querySelectorAll('.option');
+            const submitBtn = feedback.parentNode.querySelector('.submit-btn');
+
+            // 1. 未选择选项的提示
+            if (!userAns) {
+                feedback.innerText = '请先选择一个选项！';
+                feedback.className = 'feedback';
+                return;
+            }
+
+            // 2. 题目已提交，直接返回，禁止重复提交
+            if(submittedQuestions[qNum]) return;
+
+            // 3. 标记题目为已提交，永久锁定
+            submittedQuestions[qNum] = true;
+            // 锁定该题所有选项和提交按钮（样式+点击）
+            allOptions.forEach(opt => {
+                opt.classList.add('disabled');
+                opt.onclick = null;
+                opt.ontouchstart = null;
+            });
+            submitBtn.classList.add('disabled');
+            submitBtn.onclick = null;
+            submitBtn.ontouchstart = null;
+
+            // 4. 答对逻辑：首次计分+提示正确
+            if (userAns === correctAns) {
+                feedback.innerText = '恭喜你回答正确！+1分';
+                feedback.className = 'feedback correct';
+                totalScore++;
+                updateScoreResult(); // 实时更新评分
+            } else {
+                // 5. 答错逻辑：永久提示错误+正确答案，不加分
+                feedback.innerText = `回答错误！正确答案：${correctAnsText}`;
+                feedback.className = 'feedback wrong';
+            }
+        }
+
+        // 评分等级更新：实时刷新掌握程度
+        function updateScoreResult() {
+            const scoreDom = document.getElementById('totalScore');
+            const levelDom = document.getElementById('level');
+            const descDom = document.getElementById('levelDesc');
+            scoreDom.innerText = totalScore;
+
+            // 等级划分（8分制，仅答对计分，答错不计分）
+            let level, desc, bgColor;
+            if (totalScore < 4) {
+                level = '不合格';
+                desc = '对Cookie核心知识掌握不足，建议重新学习微课内容后再作答！';
+                bgColor = '#dc3545';
+            } else if (totalScore >= 4 && totalScore < 6) {
+                level = '合格';
+                desc = '基本掌握Cookie基础知识点，仍需加强对细节的理解！';
+                bgColor = '#ffc107';
+            } else if (totalScore >= 6 && totalScore < 8) {
+                level = '良好';
+                desc = '较好掌握Cookie相关知识，仅少量细节需巩固，继续加油！';
+                bgColor = '#198754';
+            } else {
+                level = '优秀';
+                desc = '完美掌握Cookie所有核心知识点，知识掌握很扎实，为你点赞！';
+                bgColor = '#0d6efd';
+            }
+
+            levelDom.innerText = level;
+            descDom.innerText = desc;
+            descDom.style.background = bgColor;
+        }
+    </script>
+</body>
+</html>
